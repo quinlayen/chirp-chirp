@@ -16,7 +16,16 @@ var counter = {
 }
 
 function countLetters(counter, sample_text){
-  // FIX ME
+  // Exits out of program when 
+  if (sample_text.length === 0){
+    return '';
+  }
+  if(sample_text.includes('a')){
+    counter.a++
+    sample_text.length--
+    console.log(counter);
+    countLetters();
+  }
 }
 
 $(document).ready(function(){
