@@ -14,20 +14,48 @@ var counter = {
   "u" : 0,  "v" : 0,  "w" : 0,  "x" : 0,
   "y" : 0,  "z" : 0
 }
-
+let i =0;
+  let index;
+  let element;
 function countLetters(counter, sample_text){
-  // Exits out of program when 
-  if (sample_text.length === 0){
-    return '';
+ //variable declarations
+  
+  //creates an array of all parameters in the object
+  const counterKeys = Object.keys(counter);
+  //creates an array of all characters in the sample_text.  This makes it easier to iterate through.
+  const textArr = sample_text.toLowerCase().split('');
+  let textArrLen = textArr.length;
+  
+  //checks that we are within the bounds of text so as to be able to exit out of the loop
+  if (textArrLen === 0){
+    return;
   }
-  if(sample_text.includes('a')){
-    counter.a++
-    sample_text.length--
-    console.log(counter);
-    countLetters();
+  
+
+  //select each letter from the counterKeys and use those elements as the selector
+  //then using those selected elements go through the sample_text or textArr to find each element
+  
+  element = counterKeys[i]//returns a letter from counterKeys and assigns it to element
+  //console.log(element) //testing that element works
+  index = textArr.indexOf(element) //gets index number of element
+  //console.log(index)//testing that index works
+  if(index > -1){
+    counter[element]++
+    i++
   }
+  console.log(counter)
+  return countLetters(counter, --textArrLen)
 }
 
+  //from here is a working test model
+  //let indices = [];
+  //let element = 'a';
+  //let idx = textArr.indexOf(element);
+ 
+  // while(idx != -1){
+  //   indices.push(idx);
+  //   idx = textArr.indexOf(element, idx + 1)
+  // }
 $(document).ready(function(){
   countLetters(counter, sample_text);
   $("#result").html(JSON.stringify(counter));
